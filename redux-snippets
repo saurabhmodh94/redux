@@ -1,0 +1,18 @@
+state:
+  1st : everything that changes in your application including the data or ui state,
+  is contained in single object called state or state-tree
+actions:
+  2nd Principle: state is read only, only way to change state-tree is by dispatching an action,
+  action is an javascript object described in a minimal way what change in the application
+pure-impure functions:
+  redux have to be pure
+	impure functions= override values passed to them
+reducer:
+	3rd Principle: is a function, state + action => next state; has to be pure
+	Fast because prev state is maintained
+1st reducer:
+  Testcase: expect library
+	1.default case
+	2.initial state condition es6
+	//if-else to switch
+	//arrow notation
