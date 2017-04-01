@@ -16,3 +16,8 @@ reducer:
 	2.initial state condition es6
 	//if-else to switch
 	//arrow notation
+store-three-methods:
+  npm install --save redux
+  store.getState() //current value
+  store.dispatch() //dispatch action
+  store.subscribe() //run when action is triggerd
