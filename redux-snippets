@@ -27,3 +27,6 @@ redux-simple-react-example
     callbacks - eventHandler
 09-egghead-redux-avoiding-array-mutations-with-concat-slice-and-spread
   deep-freeze //avoid mutations
+  node src/test.js // command to run Testcase
+10-egghead-redux-avoiding-object-mutations-with-objectassign-and-spread
+  Object.assign() //ES6
