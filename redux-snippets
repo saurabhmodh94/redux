@@ -23,3 +23,7 @@ store-three-methods:
   store.subscribe() //run when action is triggered
 interlude-inside-the-redux-store
 redux-simple-react-example
+  component - dump component, does not contain any business logic, 
+    callbacks - eventHandler
+09-egghead-redux-avoiding-array-mutations-with-concat-slice-and-spread
+  deep-freeze //avoid mutations
