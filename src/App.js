@@ -1,12 +1,31 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
+      <Counter
+        value={store.getState()}
+        onIncrement={() =>
+          store.dispatch({ type: "INCREMENT" })
+        }
+        onDecrement={() =>
+          store.dispatch({ type: "DECREMENT" })
+        }
+      />
+    );
+  }
+}
+
+class Counter extends React.Component {
+  render() {
+    return (
       <div>
-        Welcome to Redux.
+        <h1>{this.props.value}</h1>
+        <button onClick={this.props.onIncrement}>+</button>
+        <button onClick={this.props.onDecrement}>-</button>
       </div>
     );
   }
@@ -30,7 +49,19 @@ console.log(store.getState());
 // console.log(store.getState());
 
 const render = () => {
-  document.body.innerHTML = store.getState();
+  // document.body.innerHTML = store.getState();
+  ReactDOM.render(
+    <Counter
+      value={store.getState()}
+      onIncrement={() =>
+        store.dispatch({ type: "INCREMENT" })
+      }
+      onDecrement={() =>
+        store.dispatch({ type: "DECREMENT" })
+      }
+    />,
+    document.getElementById('root')
+  );
 }
 
 // store.subscribe(() => {
@@ -40,8 +71,8 @@ const render = () => {
 store.subscribe(render);
 render();
 
-document.addEventListener('click', () => {
-  store.dispatch({ type: "INCREMENT" });
-});
+// document.addEventListener('click', () => {
+//   store.dispatch({ type: "INCREMENT" });
+// });
 
 export default App;

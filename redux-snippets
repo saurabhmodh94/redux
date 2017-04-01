@@ -20,4 +20,6 @@ store-three-methods:
   npm install --save redux
   store.getState() //current value
   store.dispatch() //dispatch action
-  store.subscribe() //run when action is triggerd
+  store.subscribe() //run when action is triggered
+interlude-inside-the-redux-store
+redux-simple-react-example
