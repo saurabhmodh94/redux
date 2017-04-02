@@ -30,3 +30,4 @@ redux-simple-react-example
   node src/test.js // command to run Testcase
 10-egghead-redux-avoiding-object-mutations-with-objectassign-and-spread
   Object.assign() //ES6
+11-egghead-redux-writing-a-todo-list-reducer-adding-a-todo
