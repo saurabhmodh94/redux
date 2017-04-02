@@ -32,3 +32,5 @@ redux-simple-react-example
   Object.assign() //ES6
 11-egghead-redux-writing-a-todo-list-reducer-adding-a-todo
 12-egghead-redux-writing-a-todo-list-reducer-toggling-a-todo
+13-egghead-redux-reducer-composition
+  anytime a function does to many things , you want to extract other functions from it 
