@@ -31,3 +31,4 @@ redux-simple-react-example
 10-egghead-redux-avoiding-object-mutations-with-objectassign-and-spread
   Object.assign() //ES6
 11-egghead-redux-writing-a-todo-list-reducer-adding-a-todo
+12-egghead-redux-writing-a-todo-list-reducer-toggling-a-todo
