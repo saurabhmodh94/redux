@@ -6,73 +6,78 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Counter
-        value={store.getState()}
-        onIncrement={() =>
-          store.dispatch({ type: "INCREMENT" })
-        }
-        onDecrement={() =>
-          store.dispatch({ type: "DECREMENT" })
-        }
-      />
+      <div></div>
     );
   }
 }
 
-class Counter extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.value}</h1>
-        <button onClick={this.props.onIncrement}>+</button>
-        <button onClick={this.props.onDecrement}>-</button>
-      </div>
-    );
-  }
-}
-
-const counter = (state = 0, action) => {
+const todo = (state, action) => {
   switch (action.type) {
-    case "INCREMENT":
-      return state + 1;
-    case "DECREMENT":
-      return state - 1;
+    case 'ADD_TODO':
+      return {
+        id: action.id,
+        text: action.text,
+        completed: false
+      };
+    case 'TOGGLE_TODO':
+      if (state.id != action.id)
+        return state;
+      return Object.assign({}, state, { completed: !state.completed });
     default:
       return state;
   }
 }
 
-const store = createStore(counter);
-console.log(store.getState());
-
-// store.dispatch({ type: "INCREMENT" });
-// console.log(store.getState());
-
-const render = () => {
-  // document.body.innerHTML = store.getState();
-  ReactDOM.render(
-    <Counter
-      value={store.getState()}
-      onIncrement={() =>
-        store.dispatch({ type: "INCREMENT" })
-      }
-      onDecrement={() =>
-        store.dispatch({ type: "DECREMENT" })
-      }
-    />,
-    document.getElementById('root')
-  );
+const todos = (state = [], action) => {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [
+        ...state,
+        todo(undefined, action)
+      ];
+    case 'TOGGLE_TODO':
+      return state.map(t => todo(t, action));
+    default:
+      return state;
+  }
 }
 
-// store.subscribe(() => {
-//   document.body.innerHTML = store.getState();
-// })
 
-store.subscribe(render);
-render();
+const visibilityFilter = (state = 'SHOW_ALL', action) => {
+  switch (action.type) {
+    case 'SET_VISIBILITY_FILTER':
+      return action.filter;
+    default:
+      return state;
+  }
+}
+const todoApp = (state = [], action) => {
+  return {
+    todos: todo(state.todos, action),
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action)
+  }
+}
 
-// document.addEventListener('click', () => {
-//   store.dispatch({ type: "INCREMENT" });
-// });
+const store = createStore(todoApp);
+console.log(store.getState());
+
+store.dispatch({
+  type: 'ADD_TODO',
+  id: 0,
+  text: 'Redux Learn'
+})
+console.log(store.getState());
+
+store.dispatch({
+  type: 'TOGGLE_TODO',
+  id: 0
+})
+console.log(store.getState());
+
+store.dispatch({
+  type: 'SET_VISIBILITY_FILTER',
+  filter: 'SHOW_COMPLETED'
+})
+console.log(store.getState());
 
 export default App;
