@@ -42,3 +42,4 @@ redux-simple-react-example
   values: reducers 
 16-egghead-redux-implementing-combinereducers-from-scratch
 17-egghead-redux-react-todos-example-adding-a-todo
+18-egghead-18-redux-react-todos-example-toggling-todo
