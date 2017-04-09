@@ -36,3 +36,7 @@ redux-simple-react-example
   anytime a function does to many things , you want to extract other functions from it 
 14-egghead-js-redux-reducer-composition-with-objects
   compose reducers
+15-egghead-js-redux-reducer-composition-with-combinereducers
+  combinereducers
+  keys: fields of the state object going to manage
+  values: reducers 

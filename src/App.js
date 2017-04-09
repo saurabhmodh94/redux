@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+import { combineReducers } from 'redux';
 import './App.css';
 
 class App extends Component {
@@ -20,7 +20,7 @@ const todo = (state, action) => {
         completed: false
       };
     case 'TOGGLE_TODO':
-      if (state.id != action.id)
+      if (state.id !== action.id)
         return state;
       return Object.assign({}, state, { completed: !state.completed });
     default:
@@ -51,12 +51,22 @@ const visibilityFilter = (state = 'SHOW_ALL', action) => {
       return state;
   }
 }
-const todoApp = (state = [], action) => {
-  return {
-    todos: todo(state.todos, action),
-    visibilityFilter: visibilityFilter(state.visibilityFilter, action)
-  }
-}
+// const todoApp = (state = [], action) => {
+//   return {
+//     todos: todos(state.todos, action),
+//     visibilityFilter: visibilityFilter(state.visibilityFilter, action)
+//   }
+// } // method 1
+
+// const todoApp = combineReducers({
+//   todos: todos,
+//   visibilityFilter: visibilityFilter
+// }); // method 2
+
+const todoApp = combineReducers({
+  todos,
+  visibilityFilter
+}); // method 3 - es6
 
 const store = createStore(todoApp);
 console.log(store.getState());
