@@ -40,3 +40,5 @@ redux-simple-react-example
   combinereducers
   keys: fields of the state object going to manage
   values: reducers 
+16-egghead-redux-implementing-combinereducers-from-scratch
+17-egghead-redux-react-todos-example-adding-a-todo
