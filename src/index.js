@@ -73,6 +73,33 @@ class FilterLink extends Component {
   }
 }
 
+class Todo extends Component {
+  render() {
+    return (
+      <li
+        onClick={this.props.onClick}
+        style={
+          {
+            textDecoration: this.props.completed ? 'line-through' : 'none'
+          }
+        }>{this.props.text}</li>
+    );
+  }
+}
+
+class TodoList extends Component {
+  render() {
+    return (
+      <ul>
+        {this.props.todos.map(todo =>
+          <Todo text={todo.text} completed={todo.completed} onClick={()=>this.props.onTodoClick(todo.id)}
+          />
+        )}
+      </ul>
+    );
+  }
+}
+
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'SHOW_ALL':
@@ -108,22 +135,12 @@ class TodoApp extends Component {
           <FilterLink filter="COMPLETED" currentFilter={this.props.visibilityFilter}>Completed</FilterLink>{' '}
           <FilterLink filter="UNCOMPLETE" currentFilter={this.props.visibilityFilter}>Uncomplete</FilterLink>
         </div>
-        <ul>
-          {visibleTodos.map(todo =>
-            <li
-              onClick={() =>
-                store.dispatch({
-                  type: 'TOGGLE_TODO',
-                  id: todo.id
-                })
-              }
-              style={
-                {
-                  textDecoration: todo.completed ? 'line-through' : 'none'
-                }
-              }>{todo.text}</li>
-          )}
-        </ul>
+        <TodoList todos={visibleTodos} onTodoClick={id => {
+            store.dispatch({
+              type: 'TOGGLE_TODO',
+              id: id
+            })
+          }}/>
       </div>
     );
   }
